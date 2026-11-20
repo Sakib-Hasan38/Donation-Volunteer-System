@@ -1,0 +1,73 @@
+{% extends 'base-donar.html' %}
+{% load static %}
+
+{% block main %}
+
+<div class="container mt-5 mb-5">
+
+    <h3>Payment Details</h3>
+    <hr>
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+            <h4>Payment Information</h4>
+        </div>
+
+        <div class="card-body">
+
+            <p>
+                <strong>Amount:</strong>
+                &#2547; {{ payment.amount }}
+            </p>
+
+            <p>
+                <strong>Payment Method:</strong>
+                {{ payment.payment_method }}
+            </p>
+
+            <p>
+                <strong>Transaction ID:</strong>
+                {{ payment.transaction_id }}
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+
+                {% if payment.status == 'Pending' %}
+                    <span class="badge bg-warning text-dark">Pending</span>
+
+                {% elif payment.status == 'Success' %}
+                    <span class="badge bg-success">Success</span>
+
+                {% elif payment.status == 'Failed' %}
+                    <span class="badge bg-danger">Failed</span>
+
+                {% elif payment.status == 'Cancelled' %}
+                    <span class="badge bg-dark">Cancelled</span>
+
+                {% else %}
+                    <span class="badge bg-secondary">
+                        {{ payment.status }}
+                    </span>
+                {% endif %}
+
+            </p>
+
+            <p>
+                <strong>Payment Date:</strong>
+                {{ payment.payment_date|date:"d M, Y h:i A" }}
+            </p>
+
+            <a href="{% url 'payment-history' %}"
+               class="btn btn-secondary">
+                Back to Payment History
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock main %}

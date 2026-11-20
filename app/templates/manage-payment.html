@@ -1,0 +1,100 @@
+{% extends 'index-admin.html' %}
+{% load static %}
+
+{% block main %}
+
+<div class="container mt-5 vh-100 table-responsive">
+
+    <h3>Payment History</h3>
+    <hr>
+
+    <table id="mytable" class="table data">
+
+        <thead class="table-dark">
+
+            <tr class="text-center">
+                <th>#</th>
+                <th>Donar</th>
+                <th>Amount</th>
+                <th>Payment Method</th>
+                <th>Transaction ID</th>
+                <th>Status</th>
+                <th>Payment Date</th>
+                <th>Action</th>
+                <th>Delete</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for i in payments %}
+
+            <tr class="text-center">
+
+                <td>{{ forloop.counter }}</td>
+
+                <td>
+                    {{ i.donar.user.username }}
+                </td>
+
+                <td>
+                    &#2547; {{ i.amount }}
+                </td>
+
+                <td>
+                    {{ i.payment_method }}
+                </td>
+
+                <td>
+                    {{ i.transaction_id|default:"N/A" }}
+                </td>
+
+                <td>
+                    {% if i.status == 'Pending' %}
+                        <span class="badge bg-warning text-dark">Pending</span>
+
+                    {% elif i.status == 'Success' %}
+                        <span class="badge bg-success">Success</span>
+
+                    {% elif i.status == 'Failed' %}
+                        <span class="badge bg-danger">Failed</span>
+
+                    {% elif i.status == 'Cancelled' %}
+                        <span class="badge bg-dark">Cancelled</span>
+
+                    {% else %}
+                        <span class="badge bg-secondary">{{i.status}}</span>
+                    {% endif %}
+                </td>
+
+                <td>
+                    {{ i.payment_date|date:"d M Y, h:i A" }}
+                </td>
+
+                <td>
+                    <a href="{% url 'payment_detail_admin' i.id %}"
+                       class="text-primary">
+                        View Details
+                    </a>
+                </td>
+
+                <td>
+                    <a href="{% url 'delete_payment_admin' i.id %}"
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('Are You Sure You Want to Delete this Payment?');">
+                        Delete
+                    </a>
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock main %}

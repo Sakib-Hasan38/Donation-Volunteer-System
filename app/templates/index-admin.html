@@ -1,0 +1,309 @@
+{% extends 'base-admin.html' %}
+{% load static %}
+
+{% block main %}
+
+<div class="container mt-5">
+
+    <!-- First Row -->
+    <div class="row">
+
+        <!-- Total Donar -->
+        <div class="col-lg-3 col-md-6 mt-4">
+            <div class="card text-center">
+                <div class="card-header pt-3 bg-primary text-white">
+                    <h3>Total Donar</h3>
+                    <hr>
+                    <div class="row align-items-center pt-3">
+                        <div class="col">
+                            <i class="fa fa-list fa-3x"></i>
+                        </div>
+                        <div class="col">
+                            <h3 class="display-5">{{ totaldonars }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <h4>
+                        <a href="{% url 'manage_donar' %}" class="text-primary">
+                            View Details
+                        </a>
+                    </h4>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Total Volunteer -->
+        <div class="col-lg-3 col-md-6 mt-4">
+            <div class="card text-center">
+                <div class="card-header bg-success text-white pt-3">
+                    <h3>Total Volunteer</h3>
+                    <hr>
+                    <div class="row align-items-center pt-3">
+                        <div class="col">
+                            <i class="fa fa-snowflake fa-3x"></i>
+                        </div>
+                        <div class="col">
+                            <h3 class="display-5">{{ totalvolunteers }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <h4>
+                        <a href="{% url 'accepted_volunteer' %}" class="text-primary">
+                            View Details
+                        </a>
+                    </h4>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Total Donation -->
+        <div class="col-lg-3 col-md-6 mt-4">
+            <div class="card text-center">
+                <div class="card-header bg-danger text-white pt-3">
+                    <h3>Total Donation</h3>
+                    <hr>
+                    <div class="row align-items-center pt-3">
+                        <div class="col">
+                            <i class="fa fa-arrows fa-3x"></i>
+                        </div>
+                        <div class="col">
+                            <h3 class="display-5">{{ totaldonations }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <h4>
+                        <a href="{% url 'all_donations' %}" class="text-primary">
+                            View Details
+                        </a>
+                    </h4>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Total Donation Area -->
+        <div class="col-lg-3 col-md-6 mt-4">
+            <div class="card text-center">
+                <div class="card-header bg-secondary text-white pt-3">
+                    <h3>Total Donation Area</h3>
+                    <hr>
+                    <div class="row align-items-center pt-3">
+                        <div class="col">
+                            <i class="fa fa-exchange fa-3x"></i>
+                        </div>
+                        <div class="col">
+                            <h3 class="display-5">{{ totaldonationarea }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <h4>
+                        <a href="{% url 'manage_area' %}" class="text-primary">
+                            View Details
+                        </a>
+                    </h4>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Payment Row -->
+    <div class="row">
+
+        <!-- Total Payment -->
+        <div class="col-lg-3 col-md-6 mt-4">
+            <div class="card text-center h-100">
+
+                <div class="card-header bg-warning text-dark pt-3">
+
+                    <h3>Total Payment</h3>
+                    <hr>
+
+                    <div class="row align-items-center pt-3">
+
+                        <div class="col">
+                            <i class="fa fa-credit-card fa-3x"></i>
+                        </div>
+
+                        <div class="col">
+                            <h3 class="display-5">
+                                {{ totalpayments }}
+                            </h3>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="card-footer">
+                    <h4>
+                        <a href="{% url 'manage_payment' %}"
+                           class="text-primary">
+                            View Details
+                        </a>
+                    </h4>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Total Amount -->
+        <div class="col-lg-3 col-md-6 mt-4">
+            <div class="card text-center h-100">
+
+                <div class="card-header bg-success text-white pt-3">
+
+                    <h3>Total Amount</h3>
+                    <hr>
+
+                    <div class="row align-items-center pt-3">
+
+                        <div class="col">
+                            <i class="fa fa-money fa-3x"></i>
+                        </div>
+
+                        <div class="col">
+                            <h3 class="display-5">
+                                &#2547;{{ totalamounts }}
+                            </h3>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="card-footer">
+                    <h4>
+                        <a href="{% url 'manage_payment' %}"
+                           class="text-primary">
+                            View Details
+                        </a>
+                    </h4>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Donation Status Row -->
+    <div class="row mt-5">
+
+        <!-- New Donation -->
+        <div class="col-lg-4 col-md-6 mt-4">
+            <div class="card text-center">
+
+                <div class="card-header pt-3 bg-secondary text-white">
+                    <h3>Total New Donation Request</h3>
+                    <hr>
+
+                    <div class="row align-items-center pt-3">
+                        <div class="col">
+                            <i class="fa-solid fa-bahai fa-3x"></i>
+                        </div>
+
+                        <div class="col">
+                            <h3 class="display-5">
+                                {{ totalpendingdonations }}
+                            </h3>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card-footer">
+                    <h4>
+                        <a href="{% url 'pending_donation' %}"
+                           class="text-primary">
+                            View Details
+                        </a>
+                    </h4>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Accepted Donation -->
+        <div class="col-lg-4 col-md-6 mt-4">
+            <div class="card text-center">
+
+                <div class="card-header bg-danger text-white pt-3">
+                    <h3>Total Accepted Donation</h3>
+                    <hr>
+
+                    <div class="row align-items-center pt-3">
+                        <div class="col">
+                            <i class="fa-solid fa-bars-progress fa-3x"></i>
+                        </div>
+
+                        <div class="col">
+                            <h3 class="display-5">
+                                {{ totalaccepteddonations }}
+                            </h3>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card-footer">
+                    <h4>
+                        <a href="{% url 'accepted_donation' %}"
+                           class="text-primary">
+                            View Details
+                        </a>
+                    </h4>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Delivered Donation -->
+        <div class="col-lg-4 col-md-6 mt-4">
+            <div class="card text-center">
+
+                <div class="card-header bg-success text-white pt-3">
+                    <h3>Total Donation Delivered</h3>
+                    <hr>
+
+                    <div class="row align-items-center pt-3">
+                        <div class="col">
+                            <i class="fa-solid fa-asterisk fa-3x"></i>
+                        </div>
+
+                        <div class="col">
+                            <h3 class="display-5">
+                                {{ totaldelivereddonations }}
+                            </h3>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card-footer">
+                    <h4>
+                        <a href="{% url 'donationdelivered_admin' %}"
+                           class="text-primary">
+                            View Details
+                        </a>
+                    </h4>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock main %}

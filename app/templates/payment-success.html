@@ -1,0 +1,184 @@
+```html
+{% extends 'base-donar.html' %}
+{% load static %}
+
+{% block main %}
+
+<div class="container mt-5 mb-5" style="max-width: 600px;">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-12">
+
+            <!-- Success Card -->
+            <div class="card shadow border-0 p-4 text-center"
+                 style="border-radius: 15px;">
+
+                <div class="card-body">
+
+                    <!-- Success Icon -->
+                    <div class="mb-3">
+
+                        <i class="fas fa-check-circle text-success"
+                           style="font-size: 75px;"></i>
+
+                    </div>
+
+                    <!-- Success Message -->
+                    <h3 class="text-success font-weight-bold">
+                        Payment Successful!
+                    </h3>
+
+                    <p class="text-muted lead">
+                        Thank you for your generous contribution.
+                    </p>
+
+                    <hr class="my-4">
+
+
+                    <!-- Payment Details -->
+                    <div class="text-start bg-light p-3 rounded mb-4"
+                         style="width: 100%;
+                                border-left: 5px solid #28a745;">
+
+                        <!-- Transaction ID -->
+                        <p class="mb-3">
+
+                            <strong>
+                                <i class="fas fa-receipt"></i>
+                                Transaction ID:
+                            </strong>
+
+                            <br>
+
+                            <span class="badge bg-secondary p-2 mt-1">
+                                {{ payment.transaction_id|default:"N/A" }}
+                            </span>
+
+                        </p>
+
+
+                        <!-- Amount -->
+                        <p class="mb-3">
+
+                            <strong>
+                                <i class="fas fa-money-bill-wave"></i>
+                                Amount Contributed:
+                            </strong>
+
+                            <br>
+
+                            <span class="text-primary font-weight-bold"
+                                  style="font-size: 20px;">
+
+                                {{ payment.amount }} BDT
+
+                            </span>
+
+                        </p>
+
+
+                        <!-- Payment Method -->
+                        <p class="mb-3">
+
+                            <strong>
+                                <i class="fas fa-credit-card"></i>
+                                Payment Method:
+                            </strong>
+
+                            <br>
+
+                            <span class="text-dark font-weight-bold">
+
+                                {{ payment.payment_method }}
+
+                            </span>
+
+                        </p>
+
+
+                        <!-- Payment Status -->
+                        <p class="mb-3">
+
+                            <strong>
+                                <i class="fas fa-check-circle"></i>
+                                Payment Status:
+                            </strong>
+
+                            <br>
+
+                            <span class="badge bg-success p-2 mt-1">
+
+                                {{ payment.status }}
+
+                            </span>
+
+                        </p>
+
+
+                        <!-- Payment Date -->
+                        <p class="mb-0">
+
+                            <strong>
+                                <i class="fas fa-calendar-alt"></i>
+                                Payment Date:
+                            </strong>
+
+                            <br>
+
+                            <span class="text-dark">
+
+                                {{ payment.payment_date|date:"d M Y, h:i A" }}
+
+                            </span>
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- Demo Notice -->
+                    <div class="alert alert-warning small text-center">
+
+                        <i class="fas fa-info-circle"></i>
+
+                        This is a demo payment system.
+                        It is not connected to the official
+                        bKash Payment Gateway.
+
+                    </div>
+
+
+                    <!-- Buttons -->
+                    <div class="d-grid gap-2">
+
+                        <a href="{% url 'payment-history' %}"
+                           class="btn btn-primary btn-lg p-2">
+
+                            <i class="fas fa-history"></i>
+                            View Payment History
+
+                        </a>
+
+
+                        <a href="{% url 'index-donar' %}"
+                           class="btn btn-success btn-lg p-2 mt-2">
+
+                            <i class="fas fa-home"></i>
+                            Go to Dashboard
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock main %}

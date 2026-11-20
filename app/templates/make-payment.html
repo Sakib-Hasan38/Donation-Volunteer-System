@@ -1,0 +1,136 @@
+```html
+{% extends 'base-donar.html' %}
+{% load static %}
+
+{% block main %}
+
+<div class="container mt-5 mb-5">
+
+    <h4>Make Payment</h4>
+    <hr>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow border-0"
+                 style="border-radius: 10px;">
+
+                <!-- Header -->
+                <div class="card-header text-center bg-dark text-white"
+                     style="border-top-left-radius: 10px;
+                            border-top-right-radius: 10px;">
+
+                    <h4 class="mb-0 py-2">
+                        Donation Payment
+                    </h4>
+
+                </div>
+
+                <div class="card-body p-4">
+
+                    <!-- Demo Notice -->
+                    <div class="alert alert-warning text-center mb-4">
+
+                        <h5 class="font-weight-bold">
+                            <i class="fas fa-info-circle"></i>
+                            Demo Payment System
+                        </h5>
+
+                        <p class="mb-0">
+                            This project currently uses a demo payment
+                            verification system. It is not connected to
+                            the official bKash Payment Gateway.
+                        </p>
+
+                    </div>
+
+
+                    <!-- bKash Receiving Number -->
+                    <div class="alert alert-danger text-center mb-4">
+
+                        <h5 class="font-weight-bold">
+                            <i class="fas fa-mobile-alt"></i>
+                            Send your donation to
+                        </h5>
+
+                        <h3 class="font-weight-bold mt-3 mb-2">
+                            01XXXXXXXXX
+                        </h3>
+
+                        <p class="mb-0">
+                            Donation Receiving Number
+                        </p>
+
+                    </div>
+
+
+                    <!-- Security Information -->
+                    <div class="alert alert-secondary text-center small mb-4">
+
+                        <i class="fas fa-shield-alt text-success"></i>
+
+                        আপনার মোবাইল নম্বর যাচাই করার জন্য
+                        OTP ব্যবহার করা হবে।
+
+                        <br>
+
+                        <span class="text-muted">
+                            এটি আপনার ওয়েবসাইটের OTP verification,
+                            bKash-এর official OTP নয়।
+                        </span>
+
+                    </div>
+
+
+                    <!-- Payment Form -->
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        {% for fm in form %}
+
+                            <div class="form-group mb-4">
+
+                                <label class="form-label font-weight-bold mb-2">
+                                    {{ fm.label }}
+                                </label>
+
+                                {{ fm }}
+
+                                {% if fm.errors %}
+                                    <div class="text-danger small mt-1">
+                                        {{ fm.errors }}
+                                    </div>
+                                {% endif %}
+
+                            </div>
+
+                        {% endfor %}
+
+
+                        <!-- Pay Button -->
+                        <div class="d-grid gap-2 mt-4">
+
+                            <button
+                                type="submit"
+                                class="btn btn-success btn-lg p-3 font-weight-bold w-100">
+
+                                <i class="fas fa-mobile-alt"></i>
+
+                                Continue Payment
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock main %}

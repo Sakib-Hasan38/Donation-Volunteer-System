@@ -1,0 +1,106 @@
+{% extends 'base-admin.html' %}
+{% load static %}
+
+{% block main %}
+
+<div class="container mt-5">
+
+    <h3>Payment Details</h3>
+    <hr>
+
+    <!-- মেসেজ নোটিফিকেশন অ্যালার্ট (বুটস্ট্র্যাপ অ্যালার্ট উইথ ক্লোজ বাটন) -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show mt-3" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="card shadow-sm mb-4" style="border-radius: 8px;">
+
+        <div class="card-header bg-primary text-white" style="border-top-left-radius: 8px; border-top-right-radius: 8px;">
+            <h4 class="mb-0 py-1">Payment Information</h4>
+        </div>
+
+        <div class="card-body p-4">
+
+            <p>
+                <strong>Donor:</strong>
+                {{ payment.donar.user.first_name }}
+                {{ payment.donar.user.last_name }}
+                ({{ payment.donar.user.username }})
+            </p>
+
+            <p>
+                <strong>Email:</strong>
+                {{ payment.donar.user.email }}
+            </p>
+
+            <p>
+                <strong>Contact:</strong>
+                {{ payment.donar.contact }}
+            </p>
+
+            <!-- ১. টাইপিং ভুল সংশোধন: Email পরিবর্তন করে Address করা হয়েছে -->
+            <p>
+                <strong>Address:</strong>
+                {{ payment.donar.address }}
+            </p>
+
+            <p>
+                <strong>Amount:</strong>
+                <span class="text-primary font-weight-bold">৳ {{ payment.amount }}</span>
+            </p>
+
+            <p>
+                <strong>Payment Method:</strong>
+                <span class="badge bg-secondary">{{ payment.payment_method }}</span>
+            </p>
+
+            <p>
+                <strong>Transaction ID:</strong>
+                <code>{{ payment.transaction_id }}</code>
+            </p>
+
+            <p>
+                <strong>Current Status:</strong>
+                    {% if payment.status == 'Pending' %}
+                        <span class="badge bg-warning text-dark">Pending</span>
+
+                    {% elif payment.status == 'Success' %}
+                        <span class="badge bg-success">Success</span>
+
+                    {% elif payment.status == 'Failed' %}
+                        <span class="badge bg-danger">Failed</span>
+
+                    {% elif payment.status == 'Cancelled' %}
+                        <span class="badge bg-dark">Cancelled</span>
+
+                    {% endif %}
+            </p>
+            
+            <p>
+                <strong>Payment Date:</strong>
+                {{ payment.payment_date|date:"d M, Y h:i A" }}
+            </p>
+
+            <hr class="my-4">
+
+            <!-- ২. স্ট্যাটাস পরিবর্তন করার আপডেটেড ফর্ম ইন্টারফেস -->
+            
+
+            <div class="mt-3">
+                <a href="{% url 'manage_payment' %}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Back to Payment History
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock main %}
